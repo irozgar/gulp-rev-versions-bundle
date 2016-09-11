@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy" class="Irozgar\GulpRevVersionsBundle\Asset\GulpRevVersionStrategy">
+            <argument>%kernel.root_dir%</argument>
+            <argument>%gulp_rev_manifest_path%</argument>
+        </service>
+    </services>
+
+</container>
