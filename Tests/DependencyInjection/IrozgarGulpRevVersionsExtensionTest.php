@@ -5,13 +5,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Irozgar\GulpRevVersionsBundle\Tests\DependencyInjection;
 
 use Irozgar\GulpRevVersionsBundle\DependencyInjection\Configuration;
 use Irozgar\GulpRevVersionsBundle\DependencyInjection\IrozgarGulpRevVersionsExtension;
 use PHPUnit_Framework_TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Dump\Container;
 use Symfony\Component\Yaml\Parser;
 
 class IrozgarGulpRevVersionsExtensionTest extends PHPUnit_Framework_TestCase
@@ -46,17 +46,18 @@ class IrozgarGulpRevVersionsExtensionTest extends PHPUnit_Framework_TestCase
 
     public function getEmptyConfig()
     {
-        $yaml = <<<EOF
+        $yaml = <<<'EOF'
 manifest_path: ~
 EOF;
 
         $parser = new Parser();
+
         return $parser->parse($yaml);
     }
 
     public function getConfigWithPackages()
     {
-        $yaml = <<<EOF
+        $yaml = <<<'EOF'
 manifest_path: ~
 packages:
     - mycdn
@@ -64,6 +65,7 @@ packages:
 EOF;
 
         $parser = new Parser();
+
         return $parser->parse($yaml);
     }
 }

@@ -25,8 +25,7 @@ class IrozgarGulpRevVersionsBundle extends Bundle
         CompilerPassInterface $compilerPass,
         $maxVersion,
         $currentVersion = Kernel::VERSION_ID
-    )
-    {
+    ) {
         if ($currentVersion < $maxVersion) {
             $container->addCompilerPass($compilerPass);
         }

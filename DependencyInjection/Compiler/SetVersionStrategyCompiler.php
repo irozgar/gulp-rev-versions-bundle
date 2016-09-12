@@ -5,6 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Irozgar\GulpRevVersionsBundle\DependencyInjection\Compiler;
 
 use Exception;
@@ -15,7 +16,7 @@ use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Class SetVersionStrategy
+ * Class SetVersionStrategy.
  *
  * @author Isaac Rozas García <irozgar@gmail.com>
  */
@@ -24,7 +25,7 @@ class SetVersionStrategyCompiler implements CompilerPassInterface
     private $map = array(
         'Symfony\\Component\\Asset\\Package' => 0,
         'Symfony\\Component\\Asset\\PathPackage' => 1,
-        'Symfony\\Component\\Asset\\UrlPackage' => 1
+        'Symfony\\Component\\Asset\\UrlPackage' => 1,
     );
 
     public function process(ContainerBuilder $container)
@@ -73,6 +74,7 @@ class SetVersionStrategyCompiler implements CompilerPassInterface
 
     /**
      * @param ContainerBuilder $container
+     *
      * @throws Exception
      */
     private function replaceDefaultStrategy(ContainerBuilder $container)
@@ -109,20 +111,15 @@ class SetVersionStrategyCompiler implements CompilerPassInterface
                 continue;
             }
 
-            $definition = $container->getDefinition((string)$package);
+            $definition = $container->getDefinition((string) $package);
             $definition->replaceArgument(1, new Reference('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy'));
-            //var_dump($definition);
-            //die;
-
         }
-        //var_dump($packages);
-        //die;
     }
 
     private function createNamedPackageIdsArray(array $names)
     {
         return array_map(function ($name) {
-            return 'assets._package_' . $name;
+            return 'assets._package_'.$name;
         }, $names);
     }
 }

@@ -5,13 +5,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Irozgar\GulpRevVersionsBundle\Asset;
 
 use Exception;
 use Symfony\Component\Asset\VersionStrategy\VersionStrategyInterface;
 
 /**
- * Class VersionStrategy
+ * Class VersionStrategy.
  *
  * @author Isaac Rozas García <irozgar@gmail.com>
  */
@@ -64,7 +65,7 @@ class GulpRevVersionStrategy implements VersionStrategyInterface
         }
 
         // If a file exists, it doesn't have a version so we ignore it
-        $fileExists = file_exists($this->kernelRootDir . '/../web/' . $path);
+        $fileExists = file_exists($this->kernelRootDir.'/../web/'.$path);
         $hasVersion = isset($this->paths[$path]);
 
         if (!$fileExists && !$hasVersion) {
@@ -76,7 +77,7 @@ class GulpRevVersionStrategy implements VersionStrategyInterface
 
     private function loadManifestFile()
     {
-        $manifestPath = $this->kernelRootDir . '/' . $this->manifestPath;
+        $manifestPath = $this->kernelRootDir.'/'.$this->manifestPath;
 
         if (!is_file($manifestPath)) {
             throw new Exception(

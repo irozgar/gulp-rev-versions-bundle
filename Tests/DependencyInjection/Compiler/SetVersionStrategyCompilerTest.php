@@ -1,15 +1,15 @@
 <?php
 /**
- * This file is part of GulpRevVersionStrategy
+ * This file is part of GulpRevVersionStrategy.
  *
  * For the full copyright and license information, please view de LICENSE
  * file that is in the root of this project
  */
+
 namespace Irozgar\GulpRevVersionsBundle\Tests\DependencyInjection\Compiler;
 
 use Irozgar\GulpRevVersionsBundle\DependencyInjection\Compiler\SetVersionStrategyCompiler;
 use PHPUnit_Framework_TestCase;
-use Symfony\Component\Asset\PathPackage;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
@@ -27,18 +27,16 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
         $package = $this->createDefaultPackageDefinition($container);
         $this->createPackagesDefinition($container, array());
 
-
         $container->setParameter('gulp_rev_replace_strategy', true);
         $container->setParameter('irozgar_gulp_rev.packages', array('mycdn'));
         $container->register('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy', $strategy);
-
 
         $compiler = new SetVersionStrategyCompiler();
         $compiler->process($container);
 
         $this->assertEquals(
             'irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy',
-            (string)$package->getArgument(1)
+            (string) $package->getArgument(1)
         );
     }
 
@@ -52,18 +50,16 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
         $package = $this->createDefaultPackageDefinition($container);
         $this->createPackagesDefinition($container, array());
 
-
         $container->setParameter('gulp_rev_replace_strategy', false);
         $container->setParameter('irozgar_gulp_rev.packages', array('mycdn'));
         $container->register('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy', $strategy);
-
 
         $compiler = new SetVersionStrategyCompiler();
         $compiler->process($container);
 
         $this->assertEquals(
-            (string)$this->createVersion($container),
-            (string)$package->getArgument(1)
+            (string) $this->createVersion($container),
+            (string) $package->getArgument(1)
         );
     }
 
@@ -79,13 +75,12 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
         $packages = array();
         $namedPackageDefinition = array();
         foreach (array('mycdn', 'another') as $name) {
-            /** @var DefinitionDecorator[] $namedPackageDefinition */
+            /* @var DefinitionDecorator[] $namedPackageDefinition */
             $namedPackageDefinition[$name] = $this->createNamedPackageDefinition($name, $container);
             $packages[$name] = new Reference($this->getNamedPackageId($name));
         }
         $this->createDefaultPackageDefinition($container);
         $this->createPackagesDefinition($container, $packages);
-
 
         $container->setParameter('gulp_rev_replace_strategy', true);
         $container->setParameter('irozgar_gulp_rev.packages', array('mycdn', 'another'));
@@ -96,11 +91,11 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             'irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy',
-            (string)$namedPackageDefinition['mycdn']->getArgument(1)
+            (string) $namedPackageDefinition['mycdn']->getArgument(1)
         );
         $this->assertEquals(
             'irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy',
-            (string)$namedPackageDefinition['another']->getArgument(1)
+            (string) $namedPackageDefinition['another']->getArgument(1)
         );
     }
 
@@ -116,13 +111,12 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
         $packages = array();
         $namedPackageDefinition = array();
         foreach (array('mycdn', 'another') as $name) {
-            /** @var DefinitionDecorator[] $namedPackageDefinition */
+            /* @var DefinitionDecorator[] $namedPackageDefinition */
             $namedPackageDefinition[$name] = $this->createNamedPackageDefinition($name, $container);
             $packages[$name] = new Reference($this->getNamedPackageId($name));
         }
         $defaultPackageDefinition = $this->createDefaultPackageDefinition($container);
         $this->createPackagesDefinition($container, $packages);
-
 
         $container->setParameter('gulp_rev_replace_strategy', false);
         $container->setParameter('irozgar_gulp_rev.packages', array('mycdn'));
@@ -133,15 +127,15 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             'assets.empty_version_strategy',
-            (string)$defaultPackageDefinition->getArgument(1)
+            (string) $defaultPackageDefinition->getArgument(1)
         );
         $this->assertEquals(
             'irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy',
-            (string)$namedPackageDefinition['mycdn']->getArgument(1)
+            (string) $namedPackageDefinition['mycdn']->getArgument(1)
         );
         $this->assertEquals(
             'assets.empty_version_strategy',
-            (string)$namedPackageDefinition['another']->getArgument(1)
+            (string) $namedPackageDefinition['another']->getArgument(1)
         );
     }
 
@@ -182,22 +176,23 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
 
     /**
      * @param $name
+     *
      * @return string
      */
     private function getNamedPackageId($name)
     {
-        return 'assets._package_' . $name;
+        return 'assets._package_'.$name;
     }
 
     /**
      * @param ContainerBuilder $container
-     * @param array $packages
+     * @param array            $packages
      */
     private function createPackagesDefinition(ContainerBuilder $container, array $packages)
     {
         $container->setDefinition('assets.packages', new Definition('Symfony\Component\Asset\Packages', array(
             new Reference('assets._default_package'),
-            $packages
+            $packages,
         )));
     }
 }

@@ -5,6 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Irozgar\GulpRevVersionsBundle\Tests\DependencyInjection;
 
 use Irozgar\GulpRevVersionsBundle\DependencyInjection\Configuration;
@@ -56,12 +57,13 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase
 
     public function getEmptyConfig()
     {
-        $yaml = <<<EOF
+        $yaml = <<<'EOF'
 manifest_path: ~
 replace_default_version_strategy: ~
 EOF;
 
         $parser = new Parser();
+
         return $parser->parse($yaml);
     }
 }
