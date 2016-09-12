@@ -33,31 +33,12 @@ class SetVersionStrategyCompiler implements CompilerPassInterface
             return;
         }
 
-        if (!$container->has('assets._default_package')) {
-            throw new Exception('Default package does not exist.');
+        // Replace the default strategy
+        if ($container->getParameter('gulp_rev_replace_strategy')) {
+            $this->replaceDefaultStrategy($container);
         }
 
-        // The compiler pass is disabled in the configuration
-        if (!$container->getParameter('gulp_rev_replace_strategy')) {
-            return;
-        }
-
-        $defaultPackage = $container->getDefinition('assets._default_package');
-
-        $class = $this->getPackageClass($defaultPackage, $container);
-
-        if ($class === null) {
-            throw new Exception(
-                sprintf('Unable to resolve the class of the service "%s"', 'assets._default_package')
-            );
-        }
-
-        $index = $this->getIndexForVersionStrategyArgument($class);
-
-        $defaultPackage->replaceArgument(
-            $index,
-            new Reference('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy')
-        );
+        $this->replaceStrategy($container);
     }
 
     private function getIndexForVersionStrategyArgument($class)
@@ -88,5 +69,60 @@ class SetVersionStrategyCompiler implements CompilerPassInterface
         }
 
         return null;
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     * @throws Exception
+     */
+    private function replaceDefaultStrategy(ContainerBuilder $container)
+    {
+        if (!$container->has('assets._default_package')) {
+            throw new Exception('Default package does not exist.');
+        }
+
+        $defaultPackage = $container->getDefinition('assets._default_package');
+
+        $class = $this->getPackageClass($defaultPackage, $container);
+
+        if ($class === null) {
+            throw new Exception(
+                sprintf('Unable to resolve the class of the service "%s"', 'assets._default_package')
+            );
+        }
+
+        $index = $this->getIndexForVersionStrategyArgument($class);
+
+        $defaultPackage->replaceArgument(
+            $index,
+            new Reference('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy')
+        );
+    }
+
+    private function replaceStrategy(ContainerBuilder $container)
+    {
+        $packages = $container->getDefinition('assets.packages')->getArgument(1);
+        $packagesToReplace = $this->createNamedPackageIdsArray($container->getParameter('irozgar_gulp_rev.packages'));
+
+        foreach ($packages as $package) {
+            if (!in_array($package, $packagesToReplace)) {
+                continue;
+            }
+
+            $definition = $container->getDefinition((string)$package);
+            $definition->replaceArgument(1, new Reference('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy'));
+            //var_dump($definition);
+            //die;
+
+        }
+        //var_dump($packages);
+        //die;
+    }
+
+    private function createNamedPackageIdsArray(array $names)
+    {
+        return array_map(function ($name) {
+            return 'assets._package_' . $name;
+        }, $names);
     }
 }

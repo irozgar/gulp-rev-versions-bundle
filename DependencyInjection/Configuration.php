@@ -32,6 +32,10 @@ class Configuration implements ConfigurationInterface
                     ->treatNullLike(true)
                     ->defaultFalse()
                 ->end()
+                ->arrayNode('packages')
+                    ->prototype('scalar')
+                    ->end()
+                ->end()
             ->end()
         ;
 

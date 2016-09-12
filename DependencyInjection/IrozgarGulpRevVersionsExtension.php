@@ -27,5 +27,6 @@ class IrozgarGulpRevVersionsExtension extends Extension
 
         $container->setParameter('gulp_rev_manifest_path', $config['manifest_path']);
         $container->setParameter('gulp_rev_replace_strategy', $config['replace_default_version_strategy']);
+        $container->setParameter('irozgar_gulp_rev.packages', $config['packages']);
     }
 }

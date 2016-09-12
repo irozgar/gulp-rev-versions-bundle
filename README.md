@@ -46,6 +46,12 @@ To make this add the following to your config.yml file:
 
 irozgar_gulp_rev_versions:
     replace_default_version_strategy: ~
+    
+    # This section is needed only if you use symfony packages
+    # packages in this list will use the version strategy
+    packages:
+        - one_package
+        - another_package
 ```
 
 #### Symfony version = 3.1 

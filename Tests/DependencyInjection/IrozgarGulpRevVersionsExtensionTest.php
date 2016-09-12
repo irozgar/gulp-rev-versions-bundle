@@ -11,18 +11,37 @@ use Irozgar\GulpRevVersionsBundle\DependencyInjection\Configuration;
 use Irozgar\GulpRevVersionsBundle\DependencyInjection\IrozgarGulpRevVersionsExtension;
 use PHPUnit_Framework_TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Dump\Container;
 use Symfony\Component\Yaml\Parser;
 
 class IrozgarGulpRevVersionsExtensionTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var ContainerBuilder
+     */
+    private $configuration;
+
+    protected function setUp()
+    {
+        $this->configuration = new ContainerBuilder();
+    }
+
     public function testAddsParameterWithManifestPathToContainer()
     {
-        $configuration = new ContainerBuilder();
         $loader = new IrozgarGulpRevVersionsExtension();
         $config = $this->getEmptyConfig();
-        $loader->load(array($config), $configuration);
+        $loader->load(array($config), $this->configuration);
 
-        $this->assertEquals(Configuration::DEFAULT_MANIFEST_PATH, $configuration->getParameter('gulp_rev_manifest_path'));
+        $this->assertEquals(Configuration::DEFAULT_MANIFEST_PATH, $this->configuration->getParameter('gulp_rev_manifest_path'));
+    }
+
+    public function testAddsPackagesArrayToContainer()
+    {
+        $loader = new IrozgarGulpRevVersionsExtension();
+        $config = $this->getConfigWithPackages();
+        $loader->load(array($config), $this->configuration);
+
+        $this->assertEquals(array('mycdn', 'another'), $this->configuration->getParameter('irozgar_gulp_rev.packages'));
     }
 
     public function getEmptyConfig()
@@ -33,6 +52,18 @@ EOF;
 
         $parser = new Parser();
         return $parser->parse($yaml);
+    }
 
+    public function getConfigWithPackages()
+    {
+        $yaml = <<<EOF
+manifest_path: ~
+packages:
+    - mycdn
+    - another
+EOF;
+
+        $parser = new Parser();
+        return $parser->parse($yaml);
     }
 }
