@@ -1,6 +1,19 @@
 {
     "name": "irozgar/gulp-dev-versions-bundle",
     "description": "A bundle that allows symfony to get the version of assets versioned with gulp-rev",
+    "keywords": [
+        "symfony",
+        "bundle",
+        "asset",
+        "assets",
+        "version",
+        "gulp-rev",
+        "rev-manifest",
+        "twig",
+        "css",
+        "js",
+        "javascript"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [
