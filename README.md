@@ -1,7 +1,7 @@
 GulpRevVersionsBundle  
 =====================
 [![Build Status](https://travis-ci.org/irozgar/gulp-rev-versions-bundle.svg?branch=master)](https://travis-ci.org/irozgar/gulp-rev-versions-bundle)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/ab89b8fb-06d8-4219-9971-66e99f96e722/mini.png)](https://insight.sensiolabs.com/projects/ab89b8fb-06d8-4219-9971-66e99f96e722)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f85b2945-53fe-4511-b3f0-ab93111b62a2/mini.png)](https://insight.sensiolabs.com/projects/f85b2945-53fe-4511-b3f0-ab93111b62a2)
 
 This bundle helps you using your assets versioned with gulp-rev in a symfony project by
 making the twig function `asset` return the files mapped in your gulp-rev manifest.
