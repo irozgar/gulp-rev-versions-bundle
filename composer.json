@@ -1,5 +1,5 @@
 {
-    "name": "irozgar/gulp-dev-versions-bundle",
+    "name": "irozgar/gulp-rev-versions-bundle",
     "description": "A bundle that allows symfony to get the version of assets versioned with gulp-rev",
     "keywords": [
         "symfony",
