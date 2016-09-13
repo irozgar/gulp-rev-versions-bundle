@@ -65,7 +65,7 @@ Add this to your config.yml to tell symfony what version strategy it should use
 framework:
     # ...
     assets:
-        version_strategy: irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy
+        version_strategy: irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy
        
 # ...
 
