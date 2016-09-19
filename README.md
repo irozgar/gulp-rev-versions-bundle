@@ -71,7 +71,7 @@ framework:
 
 # This is only needed if using a custom path for the manifest file
 irozgar_gulp_rev_versions:
-    manifest_path: "your/custom/path/rev-manifest.yml"
+    manifest_path: "your/custom/path/rev-manifest.json"
 ```
 
 #### Configuring the manifest file path
@@ -83,7 +83,7 @@ You can customize it by adding the following lines to your config.yml
 # app/config/config.yml
 
 irozgar_gulp_rev_versions:
-    manifest_path: "your/custom/path/rev-manifest.yml"
+    manifest_path: "your/custom/path/rev-manifest.json"
 ```
 
 **NOTE** All paths will be relative to `%kernel.root_dir%`
