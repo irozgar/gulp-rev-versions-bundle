@@ -12,7 +12,7 @@ Installation
 ### Step 1. Download with composer
 
 ```bash
-composer require irozgar/gulp-dev-versions-bundle
+composer require irozgar/gulp-rev-versions-bundle
 ```
 
 ### Step 2. Add the bundle to AppKernel
