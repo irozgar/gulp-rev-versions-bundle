@@ -82,7 +82,8 @@ class GulpRevVersionStrategy implements VersionStrategyInterface
             throw new Exception(
                 sprintf(
                     'Manifest file "%s" not found in path "%s". You can generate this file running gulp',
-                    $manifestFilename, $this->manifestPath
+                    $manifestFilename,
+                    $this->manifestPath
                 )
             );
         }
