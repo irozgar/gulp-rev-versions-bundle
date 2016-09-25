@@ -18,8 +18,6 @@ use Symfony\Component\Asset\VersionStrategy\VersionStrategyInterface;
  */
 class GulpRevVersionStrategy implements VersionStrategyInterface
 {
-    private $manifestFilename;
-
     private $manifestPath;
 
     private $paths = array();
@@ -78,12 +76,13 @@ class GulpRevVersionStrategy implements VersionStrategyInterface
     private function loadManifestFile()
     {
         $manifestPath = $this->kernelRootDir.'/'.$this->manifestPath;
+        $manifestFilename = basename($manifestPath);
 
         if (!is_file($manifestPath)) {
             throw new Exception(
                 sprintf(
                     'Manifest file "%s" not found in path "%s". You can generate this file running gulp',
-                    $this->manifestFilename, $this->manifestPath
+                    $manifestFilename, $this->manifestPath
                 )
             );
         }
