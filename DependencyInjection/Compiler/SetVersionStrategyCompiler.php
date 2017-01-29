@@ -30,7 +30,7 @@ class SetVersionStrategyCompiler implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy')) {
+        if (!$container->has('irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy')) {
             return;
         }
 
@@ -97,7 +97,7 @@ class SetVersionStrategyCompiler implements CompilerPassInterface
 
         $defaultPackage->replaceArgument(
             $index,
-            new Reference('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy')
+            new Reference('irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy')
         );
     }
 
@@ -112,7 +112,7 @@ class SetVersionStrategyCompiler implements CompilerPassInterface
             }
 
             $definition = $container->getDefinition((string) $package);
-            $definition->replaceArgument(1, new Reference('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy'));
+            $definition->replaceArgument(1, new Reference('irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy'));
         }
     }
 

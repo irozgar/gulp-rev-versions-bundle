@@ -29,13 +29,13 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
 
         $container->setParameter('gulp_rev_replace_strategy', true);
         $container->setParameter('irozgar_gulp_rev.packages', array('mycdn'));
-        $container->register('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy', $strategy);
+        $container->register('irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy', $strategy);
 
         $compiler = new SetVersionStrategyCompiler();
         $compiler->process($container);
 
         $this->assertEquals(
-            'irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy',
+            'irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy',
             (string) $package->getArgument(1)
         );
     }
@@ -52,7 +52,7 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
 
         $container->setParameter('gulp_rev_replace_strategy', false);
         $container->setParameter('irozgar_gulp_rev.packages', array('mycdn'));
-        $container->register('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy', $strategy);
+        $container->register('irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy', $strategy);
 
         $compiler = new SetVersionStrategyCompiler();
         $compiler->process($container);
@@ -84,17 +84,17 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
 
         $container->setParameter('gulp_rev_replace_strategy', true);
         $container->setParameter('irozgar_gulp_rev.packages', array('mycdn', 'another'));
-        $container->register('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy', $strategy);
+        $container->register('irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy', $strategy);
 
         $compiler = new SetVersionStrategyCompiler();
         $compiler->process($container);
 
         $this->assertEquals(
-            'irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy',
+            'irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy',
             (string) $namedPackageDefinition['mycdn']->getArgument(1)
         );
         $this->assertEquals(
-            'irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy',
+            'irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy',
             (string) $namedPackageDefinition['another']->getArgument(1)
         );
     }
@@ -120,7 +120,7 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
 
         $container->setParameter('gulp_rev_replace_strategy', false);
         $container->setParameter('irozgar_gulp_rev.packages', array('mycdn'));
-        $container->register('irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy', $strategy);
+        $container->register('irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy', $strategy);
 
         $compiler = new SetVersionStrategyCompiler();
         $compiler->process($container);
@@ -130,7 +130,7 @@ class SetVersionStrategyCompilerTest extends PHPUnit_Framework_TestCase
             (string) $defaultPackageDefinition->getArgument(1)
         );
         $this->assertEquals(
-            'irozgar_gulp_dev_versions.asset.gulp_rev_version_strategy',
+            'irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy',
             (string) $namedPackageDefinition['mycdn']->getArgument(1)
         );
         $this->assertEquals(
