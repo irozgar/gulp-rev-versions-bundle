@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy" class="Irozgar\GulpRevVersionsBundle\Asset\GulpRevVersionStrategy">
+        <service id="irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy" class="Irozgar\GulpRevVersionsBundle\Asset\GulpRevVersionStrategy" public="false">
             <argument>%kernel.root_dir%</argument>
             <argument>%gulp_rev_manifest_path%</argument>
         </service>
