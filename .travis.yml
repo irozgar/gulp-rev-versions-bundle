@@ -33,3 +33,6 @@ before_install:
 
 install:
     - composer update --prefer-source --no-interaction $COMPOSER_FLAGS
+
+script:
+   - vendor/bin/phpunit
