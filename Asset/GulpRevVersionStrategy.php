@@ -62,15 +62,16 @@ class GulpRevVersionStrategy implements VersionStrategyInterface
             $this->loadManifestFile();
         }
 
-        // If a file exists, it doesn't have a version so we ignore it
-        $fileExists = file_exists($this->kernelRootDir.'/../web/'.$path);
-        $hasVersion = isset($this->paths[$path]);
+        if (isset($this->paths[$path])) {
+            return $this->paths[$path];
+        }
 
-        if (!$fileExists && !$hasVersion) {
+        // If a file exists, it doesn't have a version so we ignore it
+        if (!file_exists($this->kernelRootDir.'/../web/'.$path)) {
             throw new Exception(sprintf('The file "%s" does not exist and there is no version file for it', $path));
         }
 
-        return $hasVersion ? $this->paths[$path] : $path;
+        return $path;
     }
 
     private function loadManifestFile()
