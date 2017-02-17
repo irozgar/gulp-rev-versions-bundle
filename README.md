@@ -54,6 +54,10 @@ irozgar_gulp_rev_versions:
         - another_package
 ```
 
+**WARNING** If your Symfony version is 3.0 you should be using the versions 1.x of twig
+because twig 2.0 introduced some changes that broke compatibility with that version of 
+Symfony after its support finished ([link](https://github.com/symfony/symfony/issues/20284)).
+
 #### Symfony version = 3.1 
 
 This symfony version introduced a new option to configure the version strategy.

@@ -15,9 +15,9 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class IrozgarGulpRevVersionsBundleTest extends PHPUnit_Framework_TestCase
 {
-    public function testCompilerPassIsAddedIfSymfonyVersionIsLessThan30000()
+    public function testCompilerPassIsAddedIfSymfonyVersionIsLessThan30100()
     {
-        if (Kernel::VERSION_ID < 30000) {
+        if (Kernel::VERSION_ID < 30100) {
             $container = new ContainerBuilder();
             $bundle = new IrozgarGulpRevVersionsBundle();
             $bundle->build($container);
@@ -29,9 +29,9 @@ class IrozgarGulpRevVersionsBundleTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    public function testCompilerPassIsNotAddedIfSymfonyVersionIsGreaterThanOrEquals30000()
+    public function testCompilerPassIsNotAddedIfSymfonyVersionIsGreaterThanOrEquals30100()
     {
-        if (Kernel::VERSION_ID >= 30000) {
+        if (Kernel::VERSION_ID >= 30100) {
             $container = new ContainerBuilder();
             $bundle = new IrozgarGulpRevVersionsBundle();
             $bundle->build($container);

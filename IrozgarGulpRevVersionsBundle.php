@@ -14,10 +14,9 @@ class IrozgarGulpRevVersionsBundle extends Bundle
     {
         parent::build($container);
 
-        // Register only for versions lower than Symfony 3.0 because the don't have the option for
+        // Register only for versions lower than Symfony 3.1 because the don't have the option for
         // setting the version_strategy
-
-        $this->addCompilerPassWhenVersionIsLowerThan($container, new SetVersionStrategyCompiler(), 30000);
+        $this->addCompilerPassWhenVersionIsLowerThan($container, new SetVersionStrategyCompiler(), 30100);
     }
 
     public function addCompilerPassWhenVersionIsLowerThan(

@@ -1,0 +1,15 @@
+framework:
+    secret:        test
+    router: { resource: "%kernel.root_dir%/routing.yml" }
+    test: ~
+    assets:
+        version_strategy: irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy
+        packages:
+            main:
+                version_strategy: irozgar_gulp_rev_versions.asset.gulp_rev_version_strategy
+            unversioned:
+                version_strategy: assets.empty_version_strategy
+
+services:
+    logger: { class: Psr\Log\NullLogger }
+
