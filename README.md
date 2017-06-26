@@ -58,7 +58,7 @@ irozgar_gulp_rev_versions:
 because twig 2.0 introduced some changes that broke compatibility with that version of 
 Symfony after its support finished ([link](https://github.com/symfony/symfony/issues/20284)).
 
-#### Symfony version >= 3.1 
+#### Symfony version >= 3.1 && < 4.0
 
 This symfony version introduced a new option to configure the version strategy.
 
@@ -77,6 +77,9 @@ framework:
 irozgar_gulp_rev_versions:
     manifest_path: "your/custom/path/rev-manifest.json"
 ```
+
+**NOTE** Since symfony 3.3 the framework includes a version strategy to load assets using a manifest file.
+[more info](http://symfony.com/doc/current/reference/configuration/framework.html#reference-assets-json-manifest-path)
 
 #### Configuring the manifest file path
 
