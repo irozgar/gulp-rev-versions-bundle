@@ -5,7 +5,8 @@ cache:
         - $HOME/.composer/cache
 
 php:
-#    - hhvm
+    - '7.3'
+    - '7.2'
     - '7.1'
 
 env:
