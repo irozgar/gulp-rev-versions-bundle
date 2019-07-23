@@ -6,6 +6,11 @@ GulpRevVersionsBundle
 This bundle helps you using your assets versioned with gulp-rev in a symfony project by
 making the twig function `asset` return the files mapped in your gulp-rev manifest.
 
+**DEPRECATED** This bundle is deprecated and will be abandoned when symfony 2.8 support finishes on November 2019. Since
+version 3.3, symfony includes the option _json_manifest_path_ that does the same as this bundle, I recommend using that
+instead of this bundle. For previous versions the recommendation is to update symfony to a stable version and start 
+using the option _json_manifest_path_.
+
 Installation
 ------------
 
