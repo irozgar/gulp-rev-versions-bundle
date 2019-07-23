@@ -10,6 +10,21 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class IrozgarGulpRevVersionsBundle extends Bundle
 {
+    public function __construct()
+    {
+        $deprecationMessage = 'The bundle IrozgarGulpRevVersionsBundle is deprecated and will be abandoned when '.
+            'symfony 2.8 support finishes on November 2019. ';
+        if (Kernel::VERSION_ID >= 30300) {
+            $deprecationMessage .= 'Since version 3.3, symfony includes the option "json_manifest_path" that does the '.
+                'same as this bundle, I recommend using that instead of this bundle.';
+        }
+        if (Kernel::VERSION_ID < 30300) {
+            $deprecationMessage .= 'I recommend updating your symfony version to the last stable version and use '.
+                'the option "json_manifest_path" included in symfony since version 3.3.';
+        }
+        trigger_error($deprecationMessage, E_USER_DEPRECATED);
+    }
+
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
